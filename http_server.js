@@ -27,7 +27,11 @@ let port = process.env.PORT || 3000;
 app.get('/data', function (req, res) {
     res.send(db.get('users').value());
 });
-
+// post route
+app.post('/test', function(req, res){
+    console.log(req.body.username, req.body.password);
+    res.send(req.body.username + " " + req.body.password)
+});
 // add user
 app.post('/add', function (req, res) {
     var user = {
