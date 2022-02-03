@@ -27,11 +27,26 @@ let port = process.env.PORT || 3000;
 app.get('/data', function (req, res) {
     res.send(db.get('users').value());
 });
+
 // post route
 app.post('/test', function(req, res){
     console.log(req.body.username, req.body.password);
     res.send(req.body.username + " " + req.body.password)
 });
+
+// add accounts
+app.post('/add', function (req, res) {
+    var accounts = {
+        'name': req.body.name,        
+        'email': req.body.email,
+        'username': req.body.username,
+        'password': req.body.password               
+    }
+    db.get('users').push(user).write();
+    console.log(db.get('users').value());
+    res.send(db.get('users').value());
+});
+
 // add user
 app.post('/add', function (req, res) {
     var user = {
